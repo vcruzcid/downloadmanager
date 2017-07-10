@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8A7E128E1F0FE60E00D3DCFE"
-               BuildableName = "WRAPPEDDownloadManager.app"
-               BlueprintName = "WRAPPEDDownloadManager"
+               BuildableName = "DownloadManager.app"
+               BlueprintName = "DownloadManager"
                ReferencedContainer = "container:DownloadManager.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -43,8 +43,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8A7E128E1F0FE60E00D3DCFE"
-            BuildableName = "WRAPPEDDownloadManager.app"
-            BlueprintName = "WRAPPEDDownloadManager"
+            BuildableName = "DownloadManager.app"
+            BlueprintName = "DownloadManager"
             ReferencedContainer = "container:DownloadManager.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -66,8 +66,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8A7E128E1F0FE60E00D3DCFE"
-            BuildableName = "WRAPPEDDownloadManager.app"
-            BlueprintName = "WRAPPEDDownloadManager"
+            BuildableName = "DownloadManager.app"
+            BlueprintName = "DownloadManager"
             ReferencedContainer = "container:DownloadManager.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -85,8 +85,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8A7E128E1F0FE60E00D3DCFE"
-            BuildableName = "WRAPPEDDownloadManager.app"
-            BlueprintName = "WRAPPEDDownloadManager"
+            BuildableName = "DownloadManager.app"
+            BlueprintName = "DownloadManager"
             ReferencedContainer = "container:DownloadManager.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
