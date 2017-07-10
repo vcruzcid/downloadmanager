@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var statusLbl: UILabel!
     @IBOutlet weak var responsesTextView: UITextView!
     @IBOutlet weak var downloadButtonOutlet: UIButton!
-    @IBOutlet weak var urlLabel: UILabel!
+    @IBOutlet weak var urlTextView: UITextView!
     
     
     @IBAction func downloadButton(_ sender: UIButton) {
@@ -30,7 +30,7 @@ class ViewController: UIViewController {
         self.progressBar.isHidden = false
         self.progressLbl.isHidden = false
         self.downloadButtonOutlet.isEnabled = false
-        self.urlLabel.text = "URL: \(String(describing: fileDownloadURL!)) "
+        self.urlTextView.text = "URL: \(String(describing: fileDownloadURL!)) "
         self.statusLbl.text = "Status: Downloading"
 
         
@@ -43,6 +43,8 @@ class ViewController: UIViewController {
             return (fileURL, [.createIntermediateDirectories, .removePreviousFile])
         }
         
+        let config = URLSessionConfiguration.ephemeral
+        let sessionManager = Alamofire.SessionManager(configuration: config)
         Alamofire.download(fileDownloadURL!, to: destination)
             .response { response in
                 
