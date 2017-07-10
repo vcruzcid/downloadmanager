@@ -184,12 +184,12 @@
 				TargetAttributes = {
 					8A7E128E1F0FE60E00D3DCFE = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = Y9KYMT46RY;
+						DevelopmentTeam = U7Y43S7H46;
 						ProvisioningStyle = Automatic;
 					};
 					8A7E12A21F0FE60E00D3DCFE = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = Y9KYMT46RY;
+						DevelopmentTeam = U7Y43S7H46;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 8A7E128E1F0FE60E00D3DCFE;
 					};
@@ -472,8 +472,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2535017BD110F2717BD04E80 /* Pods-DownloadManager.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = Y9KYMT46RY;
+				DEVELOPMENT_TEAM = U7Y43S7H46;
 				INFOPLIST_FILE = DownloadManager/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cruzcid.DownloadManager;
@@ -486,8 +485,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 91C61BF2773C8D771F21A152 /* Pods-DownloadManager.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = Y9KYMT46RY;
+				DEVELOPMENT_TEAM = U7Y43S7H46;
 				INFOPLIST_FILE = DownloadManager/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cruzcid.DownloadManager;
@@ -502,7 +500,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = Y9KYMT46RY;
+				DEVELOPMENT_TEAM = U7Y43S7H46;
 				INFOPLIST_FILE = DownloadManagerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cruzcid.DownloadManagerTests;
@@ -518,7 +516,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = Y9KYMT46RY;
+				DEVELOPMENT_TEAM = U7Y43S7H46;
 				INFOPLIST_FILE = DownloadManagerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cruzcid.DownloadManagerTests;
@@ -547,6 +545,7 @@
 				8A7E12AE1F0FE60E00D3DCFE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8A7E12AF1F0FE60E00D3DCFE /* Build configuration list for PBXNativeTarget "DownloadManagerTests" */ = {
 			isa = XCConfigurationList;
@@ -555,6 +554,7 @@
 				8A7E12B11F0FE60E00D3DCFE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
