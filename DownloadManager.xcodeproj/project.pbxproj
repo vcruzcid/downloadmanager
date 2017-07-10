@@ -131,9 +131,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8A7E128E1F0FE60E00D3DCFE /* DownloadManager */ = {
+		8A7E128E1F0FE60E00D3DCFE /* WRAPPEDDownloadManager */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8A7E12AC1F0FE60E00D3DCFE /* Build configuration list for PBXNativeTarget "DownloadManager" */;
+			buildConfigurationList = 8A7E12AC1F0FE60E00D3DCFE /* Build configuration list for PBXNativeTarget "WRAPPEDDownloadManager" */;
 			buildPhases = (
 				7AF5A8149809DF0A2EF4EE71 /* [CP] Check Pods Manifest.lock */,
 				8A7E128B1F0FE60E00D3DCFE /* Sources */,
@@ -146,7 +146,7 @@
 			);
 			dependencies = (
 			);
-			name = DownloadManager;
+			name = WRAPPEDDownloadManager;
 			productName = DownloadManager;
 			productReference = 8A7E128F1F0FE60E00D3DCFE /* DownloadManager.app */;
 			productType = "com.apple.product-type.application";
@@ -208,7 +208,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8A7E128E1F0FE60E00D3DCFE /* DownloadManager */,
+				8A7E128E1F0FE60E00D3DCFE /* WRAPPEDDownloadManager */,
 				8A7E12A21F0FE60E00D3DCFE /* DownloadManagerTests */,
 			);
 		};
@@ -350,7 +350,7 @@
 /* Begin PBXTargetDependency section */
 		8A7E12A51F0FE60E00D3DCFE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8A7E128E1F0FE60E00D3DCFE /* DownloadManager */;
+			target = 8A7E128E1F0FE60E00D3DCFE /* WRAPPEDDownloadManager */;
 			targetProxy = 8A7E12A41F0FE60E00D3DCFE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -475,7 +475,7 @@
 				DEVELOPMENT_TEAM = U7Y43S7H46;
 				INFOPLIST_FILE = DownloadManager/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cruzcid.DownloadManager;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cruzcid.wrappedDownloadManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -488,7 +488,7 @@
 				DEVELOPMENT_TEAM = U7Y43S7H46;
 				INFOPLIST_FILE = DownloadManager/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cruzcid.DownloadManager;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cruzcid.wrappedDownloadManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -538,7 +538,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8A7E12AC1F0FE60E00D3DCFE /* Build configuration list for PBXNativeTarget "DownloadManager" */ = {
+		8A7E12AC1F0FE60E00D3DCFE /* Build configuration list for PBXNativeTarget "WRAPPEDDownloadManager" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8A7E12AD1F0FE60E00D3DCFE /* Debug */,

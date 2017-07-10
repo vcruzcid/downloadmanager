@@ -21,7 +21,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var downloadButtonOutlet: UIButton!
     @IBOutlet weak var urlTextView: UITextView!
     
-    
     @IBAction func downloadButton(_ sender: UIButton) {
         //let fileDownloadURL = URL(string: "https://www.dropbox.com/s/77lp9p7055ru733/iOScapture.zip?dl=1")
         //let fileDownloadURL = URL(string: "http://192.168.203.138/test.zip")
@@ -32,6 +31,7 @@ class ViewController: UIViewController {
         self.downloadButtonOutlet.isEnabled = false
         self.urlTextView.text = "URL: \(String(describing: fileDownloadURL!)) "
         self.statusLbl.text = "Status: Downloading"
+        self.responsesTextView.text = ""
 
         
         
@@ -43,19 +43,17 @@ class ViewController: UIViewController {
             return (fileURL, [.createIntermediateDirectories, .removePreviousFile])
         }
         
-        let config = URLSessionConfiguration.ephemeral
-        let sessionManager = Alamofire.SessionManager(configuration: config)
-        Alamofire.download(fileDownloadURL!, to: destination)
+            Alamofire.download(fileDownloadURL!, to: destination)
             .response { response in
                 
                 let debugText = String(describing: response.request) + "\n" + String(describing: response.response) + "\n" + String(describing: response.temporaryURL) + "\n" + String(describing: response.destinationURL) + "\n" + String(describing: response.error)
                 self.appendDebugLog(logText: debugText)
                 
-                print(response.request)
-                print(response.response)
-                print(response.temporaryURL)
-                print(response.destinationURL)
-                print(response.error)
+//                print(response.request)
+//                print(response.response)
+//                print(response.temporaryURL)
+//                print(response.destinationURL)
+//                print(response.error)
                 
                 if response.error != nil {
                     self.statusLbl.text = "Status: Failed with error"
