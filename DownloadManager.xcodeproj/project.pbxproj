@@ -10,6 +10,7 @@
 		60794B2FCE745AB18AA6DB67 /* Pods_DownloadManagerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 189E6BCD5849C5F7F9C01FE5 /* Pods_DownloadManagerTests.framework */; };
 		6F197475560B241F6FC6D870 /* Pods_DownloadManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7217F4A220915B2FAD4541BF /* Pods_DownloadManager.framework */; };
 		8A5880BF1F1D470700AC1650 /* LogsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5880BE1F1D470700AC1650 /* LogsTableViewController.swift */; };
+		8A5880C21F1F35DC00AC1650 /* Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8A5880C01F1F35DC00AC1650 /* Data.xcdatamodeld */; };
 		8A7E12931F0FE60E00D3DCFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7E12921F0FE60E00D3DCFE /* AppDelegate.swift */; };
 		8A7E12981F0FE60E00D3DCFE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A7E12961F0FE60E00D3DCFE /* Main.storyboard */; };
 		8A7E129A1F0FE60E00D3DCFE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A7E12991F0FE60E00D3DCFE /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 		7217F4A220915B2FAD4541BF /* Pods_DownloadManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DownloadManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		727322D5832826274077288D /* Pods-DownloadManagerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DownloadManagerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DownloadManagerTests/Pods-DownloadManagerTests.release.xcconfig"; sourceTree = "<group>"; };
 		8A5880BE1F1D470700AC1650 /* LogsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogsTableViewController.swift; sourceTree = "<group>"; };
+		8A5880C11F1F35DC00AC1650 /* Data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Data.xcdatamodel; sourceTree = "<group>"; };
 		8A7E128F1F0FE60E00D3DCFE /* DownloadManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DownloadManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A7E12921F0FE60E00D3DCFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A7E12971F0FE60E00D3DCFE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -92,6 +94,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8A5880C31F1F35E400AC1650 /* DATA */ = {
+			isa = PBXGroup;
+			children = (
+				8A5880C01F1F35DC00AC1650 /* Data.xcdatamodeld */,
+			);
+			name = DATA;
+			sourceTree = "<group>";
+		};
 		8A5D47F71F16C900007FF24B /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +148,7 @@
 				8A9F069F1F153B720027F819 /* Controllers */,
 				8A5D47F81F16C920007FF24B /* Views */,
 				8A9F06A21F153C680027F819 /* Classes */,
+				8A5880C31F1F35E400AC1650 /* DATA */,
 			);
 			path = DownloadManager;
 			sourceTree = "<group>";
@@ -374,6 +385,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A9F06A41F153F9E0027F819 /* LinksManager.swift in Sources */,
+				8A5880C21F1F35DC00AC1650 /* Data.xcdatamodeld in Sources */,
 				8A9F06A81F154BE70027F819 /* NewViewController.swift in Sources */,
 				8A9F06A11F153C640027F819 /* DownloadLinkClass.swift in Sources */,
 				8A5880BF1F1D470700AC1650 /* LogsTableViewController.swift in Sources */,
@@ -631,6 +643,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8A5880C01F1F35DC00AC1650 /* Data.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8A5880C11F1F35DC00AC1650 /* Data.xcdatamodel */,
+			);
+			currentVersion = 8A5880C11F1F35DC00AC1650 /* Data.xcdatamodel */;
+			path = Data.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8A7E12871F0FE60E00D3DCFE /* Project object */;
 }
