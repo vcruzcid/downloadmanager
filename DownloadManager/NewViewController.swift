@@ -57,6 +57,8 @@ class NewViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         //        self.tableView.register(UITableView.self, forCellReuseIdentifier: "cell")
         tableView.delegate = self
         tableView.dataSource = self
+        //tableView.contentInset = UIEdgeInsets.zero
+        self.automaticallyAdjustsScrollViewInsets = false
         
         loadLinks()
         // Do any additional setup after loading the view.

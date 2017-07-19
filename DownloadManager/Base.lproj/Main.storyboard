@@ -13,7 +13,7 @@
         <!--Download Manager-->
         <scene sceneID="pD4-Jy-nbe">
             <objects>
-                <viewController title="Download Manager" id="EY9-6i-RDi" customClass="NewViewController" customModule="DownloadManager" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Download Manager" automaticallyAdjustsScrollViewInsets="NO" id="EY9-6i-RDi" customClass="NewViewController" customModule="DownloadManager" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3QY-Sq-xMh"/>
                         <viewControllerLayoutGuide type="bottom" id="tR9-2R-ODO"/>
@@ -31,7 +31,7 @@
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZxY-Ua-TUQ" id="vij-Te-saK">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HYw-cj-s0a">
