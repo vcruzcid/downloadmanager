@@ -18,6 +18,37 @@ class NewViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var resultsTextArea: UITextView!
     
+    @IBAction func addLinkButton(_ sender: UIBarButtonItem) {
+        let addLinkToList = UIAlertController(title: "Add File",message: "Please type URL", preferredStyle: .alert)
+        addLinkToList.addTextField {(textField) in
+            textField.keyboardType = .URL
+        }
+        
+        addLinkToList.addAction(UIAlertAction(title: "Add URL", style: .default)
+        { (action:UIAlertAction!) in
+            let newUrl = addLinkToList.textFields?[0].text
+            if self.canOpenURL(string: newUrl) {
+                // Add the link to the Array
+                let urlComponents = NSURLComponents(string: newUrl!)
+                let newLink = DownloadLink(url: newUrl!, protocolType: (urlComponents?.scheme)! , site: (urlComponents?.host)!, fileName: (newUrl! as NSString).lastPathComponent)
+                self.linkManager.link.append(newLink)
+                self.tableView.reloadData()
+            }
+            else {
+                print("Invalid URL")
+            }
+            
+            print("typed: \(String(describing: newUrl))")
+        })
+        
+        addLinkToList.addAction(UIAlertAction(title: "Cancel", style: .cancel) { (action:UIAlertAction!) in
+            print("Cancel")
+            self.tableView.isUserInteractionEnabled = true
+        })
+        
+        self.present(addLinkToList, animated: true)
+    }
+    
     let linkManager = LinkManager()
     
     override func viewDidLoad() {
@@ -63,19 +94,19 @@ class NewViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         self.downloadFileAlamoFire(url: self.linkManager.link[indexPath.row].url)
         
-//        let downloadUsingAlert = UIAlertController(title: "Download File", message: "Please select a method to download the file", preferredStyle: .alert)
-//
-//        downloadUsingAlert.addAction(UIAlertAction(title: "AlamoFire", style: .default)
-//        { (action:UIAlertAction!) in
-//            print("AlamoFire")
-//            self.downloadFileAlamoFire(url: self.linkManager.link[indexPath.row].url)
-//        })
-//            downloadUsingAlert.addAction(UIAlertAction(title: "Cancelar", style: .cancel) { (action:UIAlertAction!) in
-//            print("Cancel")
-//            self.tableView.isUserInteractionEnabled = true
-//        })
-//        self.present(downloadUsingAlert, animated: true)
-
+        //        let downloadUsingAlert = UIAlertController(title: "Download File", message: "Please select a method to download the file", preferredStyle: .alert)
+        //
+        //        downloadUsingAlert.addAction(UIAlertAction(title: "AlamoFire", style: .default)
+        //        { (action:UIAlertAction!) in
+        //            print("AlamoFire")
+        //            self.downloadFileAlamoFire(url: self.linkManager.link[indexPath.row].url)
+        //        })
+        //            downloadUsingAlert.addAction(UIAlertAction(title: "Cancelar", style: .cancel) { (action:UIAlertAction!) in
+        //            print("Cancel")
+        //            self.tableView.isUserInteractionEnabled = true
+        //        })
+        //        self.present(downloadUsingAlert, animated: true)
+        
     }
     
     /*
@@ -159,5 +190,17 @@ class NewViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         DispatchQueue.main.async {
             self.resultsTextArea.text = self.resultsTextArea.text + "\n" + logText
         }
+    }
+    
+    // Function to validate if the URL can be opened
+    func canOpenURL(string: String?) -> Bool {
+        guard let urlString = string else {return false}
+        guard let url = NSURL(string: urlString) else {return false}
+        if !UIApplication.shared.canOpenURL(url as URL) {return false}
+        
+        //
+        let regEx = "((https|http)://)((\\w|-)+)(([.]|[/])((\\w|-)+))+"
+        let predicate = NSPredicate(format:"SELF MATCHES %@", argumentArray:[regEx])
+        return predicate.evaluate(with: string)
     }
 }
