@@ -232,7 +232,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0830;
-				ORGANIZATIONNAME = "Cruz Cid Consultores Asociados";
+				ORGANIZATIONNAME = "MobileIron Professional Services";
 				TargetAttributes = {
 					8A7E128E1F0FE60E00D3DCFE = {
 						CreatedOnToolsVersion = 8.3.3;

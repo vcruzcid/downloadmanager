@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import CoreData
 
 class NewViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -17,6 +18,10 @@ class NewViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var percentageLabel: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var resultsTextArea: UITextView!
+    
+    var downloadedFileLogData: DownloadedFile?
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var linkManager: LinkManager?
     
     @IBAction func addLinkButton(_ sender: UIBarButtonItem) {
         let addLinkToList = UIAlertController(title: "Add File",message: "Please type URL", preferredStyle: .alert)
@@ -31,14 +36,12 @@ class NewViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                 // Add the link to the Array
                 let urlComponents = NSURLComponents(string: newUrl!)
                 let newLink = DownloadLink(url: newUrl!, protocolType: (urlComponents?.scheme)! , site: (urlComponents?.host)!, fileName: (newUrl! as NSString).lastPathComponent)
-                self.linkManager.link.append(newLink)
+                self.linkManager?.link.append(newLink)
                 self.tableView.reloadData()
             }
             else {
                 print("Invalid URL")
             }
-            
-            print("typed: \(String(describing: newUrl))")
         })
         
         addLinkToList.addAction(UIAlertAction(title: "Cancel", style: .cancel) { (action:UIAlertAction!) in
@@ -49,18 +52,15 @@ class NewViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         self.present(addLinkToList, animated: true)
     }
     
-    let linkManager = LinkManager()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //        self.tableView.register(UITableView.self, forCellReuseIdentifier: "cell")
+        linkManager = appDelegate.linkManager
         tableView.delegate = self
         tableView.dataSource = self
         //tableView.contentInset = UIEdgeInsets.zero
         self.automaticallyAdjustsScrollViewInsets = false
         
-        loadLinks()
+        linkManager?.loadLinks()
         // Do any additional setup after loading the view.
         
     }
@@ -72,7 +72,7 @@ class NewViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     // number of rows in table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.linkManager.link.count
+        return self.linkManager!.link.count
     }
     
     // create a cell for each table view row
@@ -82,9 +82,9 @@ class NewViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         let cell:UITableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "cell") as UITableViewCell!
         
         // set the text from the data model and Configure the cell
-        let link = self.linkManager.link[indexPath.row]
+        if let link = self.linkManager?.link[indexPath.row] {
         cell.textLabel?.text = link.fileName + " from " + link.site + " using " + link.protocolType
-        
+        }
         return cell
     }
     
@@ -94,21 +94,12 @@ class NewViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         self.statusLabel.text = "Status: Downloading..."
         self.resultsTextArea.text = ""
         
-        self.downloadFileAlamoFire(url: self.linkManager.link[indexPath.row].url)
+        if let link = linkManager?.link
+        {
+            downloadedFileLogData = DownloadedFile(dateStarted: Date(), url: link[indexPath.row].url, protocolType: link[indexPath.row].protocolType, site: link[indexPath.row].site, fileName: link[indexPath.row].fileName)
         
-        //        let downloadUsingAlert = UIAlertController(title: "Download File", message: "Please select a method to download the file", preferredStyle: .alert)
-        //
-        //        downloadUsingAlert.addAction(UIAlertAction(title: "AlamoFire", style: .default)
-        //        { (action:UIAlertAction!) in
-        //            print("AlamoFire")
-        //            self.downloadFileAlamoFire(url: self.linkManager.link[indexPath.row].url)
-        //        })
-        //            downloadUsingAlert.addAction(UIAlertAction(title: "Cancelar", style: .cancel) { (action:UIAlertAction!) in
-        //            print("Cancel")
-        //            self.tableView.isUserInteractionEnabled = true
-        //        })
-        //        self.present(downloadUsingAlert, animated: true)
-        
+        self.downloadFileAlamoFire(url: link[indexPath.row].url)
+        }
     }
     
     /*
@@ -120,14 +111,6 @@ class NewViewController: UIViewController, UITableViewDelegate, UITableViewDataS
      // Pass the selected object to the new view controller.
      }
      */
-    
-    func loadLinks() {
-        let link1 = DownloadLink(url: "https://www.dropbox.com/s/pz71oox28q1jfo4/iOScapture.appcomnfig.pcap?dl=1", protocolType: "HTPPS", site: "Dropbox", fileName: "iOScapture.pcap")
-        let link2 = DownloadLink(url: "https://supporthelper.cs.mobileiron.com/vcruz-download-test.bin", protocolType: "HTTPS", site: "MobileIron", fileName: "1GBFile.bin")
-        let link3 = DownloadLink(url: "https://supporthelper.cs.mobileiron.com/vcruz-download-test-512m.bin", protocolType: "HTTPS", site: "MobileIron", fileName: "512MBFile.bin")
-        
-        linkManager.link += [link1,link2,link3]
-    }
     
     func enableStuff() {
         self.progressView.setProgress(0, animated: false)
@@ -159,6 +142,7 @@ class NewViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                 
                 if response.error != nil {
                     self.statusLabel.text = "Status: Failed with error"
+                    self.downloadedFileLogData?.status = false
                     self.tableView.isUserInteractionEnabled = true
                 }
             }
@@ -181,11 +165,17 @@ class NewViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             
             .validate {request, response, temporaryURL, destinationURL in
                 
-                self.tableView.isUserInteractionEnabled = true
-                self.statusLabel.text = "Status: Downloaded"
+                
+                DispatchQueue.main.async {
+                    self.tableView.isUserInteractionEnabled = true
+                    self.statusLabel.text = "Status: Downloaded"
+                    self.downloadedFileLogData?.status = true
+                    self.linkManager?.file.append(self.downloadedFileLogData!)
+                }
                 
                 return .success
         }
+
     }
     
     func appendDebugLog(logText: String) {

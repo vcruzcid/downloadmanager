@@ -10,14 +10,24 @@ import UIKit
 
 class LogsTableViewController: UITableViewController {
 
+    // MARK: Properties
+    //let logLinkManager = LinkManager()
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var linkManager: LinkManager?
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        tableView.reloadData()
+        linkManager = appDelegate.linkManager
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,16 +39,30 @@ class LogsTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 2
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        
+        if let linkManager = linkManager{
+            return linkManager.file.count
+        }
         return 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "logCell", for: indexPath)
+        // set the text from the data model and Configure the cell
+        let log = self.linkManager?.file[indexPath.row]
+        
+        if log?.status == true {
+            cell.backgroundColor = UIColor.green
+            cell.textLabel?.text = "TRUE"
+        }
+        else {
+            cell.backgroundColor = UIColor.red
+        }
 
         // Configure the cell...
 

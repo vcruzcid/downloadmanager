@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DownloadLink: NSObject {
+class DownloadLink: NSObject  {
     var url: String
     var protocolType: String
     var site: String
@@ -20,5 +20,16 @@ class DownloadLink: NSObject {
         self.site = site
         self.fileName = fileName
         super.init()
+    }
+}
+class DownloadedFile: DownloadLink {
+        var dateStarted: Date
+        var dateFinished: Date?
+        var status: Bool?
+        var logs: String?
+    
+    init(dateStarted: Date, url:String, protocolType:String, site:String, fileName: String) {
+        self.dateStarted = dateStarted
+        super.init(url: url, protocolType: protocolType, site: site, fileName: fileName)
     }
 }
