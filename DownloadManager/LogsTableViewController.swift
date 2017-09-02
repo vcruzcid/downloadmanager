@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LogsTableViewController: UITableViewController {
+class LogsTableViewController: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     // MARK: Properties
     //let logLinkManager = LinkManager()
@@ -18,8 +18,13 @@ class LogsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
+        tableView.tableFooterView = UIView()
         tableView.reloadData()
         linkManager = appDelegate.linkManager
+        
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -52,17 +57,28 @@ class LogsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "logCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "logCell", for: indexPath) as! CustomTableViewCell
+        
         // set the text from the data model and Configure the cell
         let log = self.linkManager?.file[indexPath.row]
+        let dateFormatterVal = DateFormatter()
+            dateFormatterVal.dateStyle = .medium
+        let timeFormatterVal = DateFormatter()
+            timeFormatterVal.timeStyle = .medium
+            timeFormatterVal.dateStyle = .none
+        
+        cell.startDateLabel.text = dateFormatterVal.string(from: log!.dateStarted)
+        cell.endDateLabel.text = timeFormatterVal.string(from:(log?.dateFinished!)!)
+        cell.filenameLabel.text = log?.fileName
         
         if log?.status == true {
-            cell.backgroundColor = UIColor.green
-            cell.textLabel?.text = "TRUE"
+            cell.statusImageView.image = #imageLiteral(resourceName: "Success")        
         }
         else {
-            cell.backgroundColor = UIColor.red
+            cell.statusImageView.image = #imageLiteral(resourceName: "Fail")
         }
+        
+        cell.downloadDurationLabel.text = String(log?.dateFinished!.seconds)
 
         // Configure the cell...
 
@@ -114,4 +130,19 @@ class LogsTableViewController: UITableViewController {
     }
     */
 
+    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+        let str = "There are no logs yet :/"
+        let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
+        return NSAttributedString(string: str, attributes: attrs)
+    }
+    
+    func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+        let str = "Download some files first."
+        let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)]
+        return NSAttributedString(string: str, attributes: attrs)
+    }
+    
+    func image(forEmptyDataSet scrollView: UIScrollView) -> UIImage? {
+        return UIImage(named: "DWImage")
+    }
 }

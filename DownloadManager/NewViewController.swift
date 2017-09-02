@@ -172,7 +172,7 @@ class NewViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                     self.downloadedFileLogData?.status = true
                     self.linkManager?.file.append(self.downloadedFileLogData!)
                 }
-                
+                    self.downloadedFileLogData?.dateFinished = Date()
                 return .success
         }
 

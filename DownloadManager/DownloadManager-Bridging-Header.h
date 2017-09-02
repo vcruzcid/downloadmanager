@@ -9,5 +9,6 @@
 #ifndef DownloadManager_Bridging_Header_h
 #define DownloadManager_Bridging_Header_h
 
+#import "../Pods/DZNEmptyDataSet/Source/UIScrollView+EmptyDataSet.h"
 
 #endif /* DownloadManager_Bridging_Header_h */
